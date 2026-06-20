@@ -1,11 +1,8 @@
 'use client';
-import { useReveal } from '@/hooks/useReveal';
 
 interface Lang { name: string; level: string; pct: number; }
 
 export default function LangBars({ langs }: { langs: Lang[] }) {
-  useReveal();
-
   return (
     <div className="flex flex-col gap-7">
       {langs.map((lng, i) => (
