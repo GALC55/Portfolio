@@ -1,5 +1,42 @@
 @import "tailwindcss";
 
+@theme {
+  --font-sans: 'Space Grotesk', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  --animate-fadeUp: fadeUp .8s cubic-bezier(.16,1,.3,1) both;
+  --animate-wordIn: wordIn .6s cubic-bezier(.16,1,.3,1) both;
+  --animate-marquee: marquee 34s linear infinite;
+  --animate-floatGlow: floatGlow 14s ease-in-out infinite;
+  --animate-floatGlow2: floatGlow2 18s ease-in-out infinite;
+  --animate-bobDown: bobDown 2s ease-in-out infinite;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: none; }
+}
+@keyframes wordIn {
+  from { opacity: 0; transform: translateY(16px) rotateX(-40deg); filter: blur(6px); }
+  to   { opacity: 1; transform: none; filter: blur(0); }
+}
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+@keyframes floatGlow {
+  0%, 100% { transform: translate(0,0) scale(1); }
+  50%       { transform: translate(40px,-30px) scale(1.12); }
+}
+@keyframes floatGlow2 {
+  0%, 100% { transform: translate(0,0) scale(1); }
+  50%       { transform: translate(-50px,40px) scale(1.18); }
+}
+@keyframes bobDown {
+  0%, 100% { transform: translateY(0); opacity: 0.6; }
+  50%       { transform: translateY(9px); opacity: 1; }
+}
+
 :root {
   --accent: #ff5c38;
 }
