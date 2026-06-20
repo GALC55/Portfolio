@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gustavo Lemos · Fullstack Developer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{margin:0;background:#09090b;}
+::selection{background:#ff5c38;color:#09090b;}
+::-webkit-scrollbar{width:10px;height:10px;}
+::-webkit-scrollbar-track{background:#09090b;}
+::-webkit-scrollbar-thumb{background:#2a2a2e;border-radius:6px;border:2px solid #09090b;}
+::-webkit-scrollbar-thumb:hover{background:#3a3a40;}
+[data-reveal]{opacity:0;transform:translateY(34px);transition:opacity 1s cubic-bezier(.16,1,.3,1),transform 1s cubic-bezier(.16,1,.3,1);}
+[data-reveal].in{opacity:1;transform:none;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(28px);}to{opacity:1;transform:none;}}
+@keyframes wordIn{from{opacity:0;transform:translateY(16px) rotateX(-40deg);filter:blur(6px);}to{opacity:1;transform:none;filter:blur(0);}}
+@keyframes marquee{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:0;}}
+@keyframes floatGlow{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(40px,-30px) scale(1.12);}}
+@keyframes floatGlow2{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(-50px,40px) scale(1.18);}}
+@keyframes bobDown{0%,100%{transform:translateY(0);opacity:.6;}50%{transform:translateY(9px);opacity:1;}}
+@keyframes spinSlow{to{transform:rotate(360deg);}}
+nav a:hover{color:#f4f4f3 !important;}
+.contact-card:hover{border-color:color-mix(in oklab,#ff5c38 55%,transparent) !important;transform:translateY(-4px) !important;background:rgba(255,255,255,.05) !important;}
+.edu-card:hover{border-color:color-mix(in oklab,#ff5c38 45%,transparent) !important;transform:translateY(-3px) !important;}
+.skill-card:hover{border-color:color-mix(in oklab,#ff5c38 50%,transparent) !important;box-shadow:0 20px 50px rgba(0,0,0,.4) !important;}
+.skill-chip:hover{background:#ff5c38 !important;color:#09090b !important;}
+.sec-btn:hover{background:rgba(255,255,255,.08) !important;border-color:rgba(255,255,255,.25) !important;}
+.back-top:hover{color:#ff5c38 !important;}
+</style>
+</head>
+<body>
+<div id="top" style="--accent:#ff5c38;position:relative;background:#09090b;color:#f4f4f3;font-family:'Space Grotesk',sans-serif;font-size:18px;line-height:1.5;overflow-x:hidden;-webkit-font-smoothing:antialiased;">
+
+  <div id="scroll-progress" style="position:fixed;top:0;left:0;height:3px;width:0%;background:var(--accent,#ff5c38);z-index:200;box-shadow:0 0 12px var(--accent,#ff5c38);"></div>
+  <div id="cursor-glow" style="position:fixed;top:0;left:0;width:480px;height:480px;margin:-240px 0 0 -240px;border-radius:50%;pointer-events:none;z-index:1;background:radial-gradient(circle,color-mix(in oklab,#ff5c38 22%,transparent) 0%,transparent 60%);mix-blend-mode:screen;opacity:0;transition:opacity .4s ease;"></div>
+
+  <!-- NAV -->
+  <nav style="position:fixed;top:0;left:0;right:0;z-index:150;display:flex;align-items:center;justify-content:space-between;padding:18px clamp(20px,5vw,64px);backdrop-filter:blur(14px);background:rgba(9,9,11,.55);border-bottom:1px solid rgba(255,255,255,.06);">
+    <a href="#top" style="display:flex;align-items:center;gap:10px;text-decoration:none;color:#f4f4f3;">
+      <span style="display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:9px;background:#ff5c38;color:#09090b;font-family:'JetBrains Mono',monospace;font-weight:700;font-size:15px;">GL</span>
+      <span style="font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:.06em;color:rgba(244,244,243,.7);">gustavo.dev</span>
+    </a>
+    <div style="display:flex;align-items:center;gap:clamp(14px,2.4vw,32px);">
+      <div id="nav-links" style="display:none;gap:clamp(14px,2.4vw,30px);font-size:14.5px;">
+        <a href="#skills" class="nav-link" style="color:rgba(244,244,243,.66);text-decoration:none;transition:color .25s;" data-es="Skills" data-en="Skills">Skills</a>
+        <a href="#experience" class="nav-link" style="color:rgba(244,244,243,.66);text-decoration:none;transition:color .25s;" data-es="Experiencia" data-en="Experience">Experiencia</a>
+        <a href="#education" class="nav-link" style="color:rgba(244,244,243,.66);text-decoration:none;transition:color .25s;" data-es="Educación" data-en="Education">Educación</a>
+        <a href="#contact" class="nav-link" style="color:rgba(244,244,243,.66);text-decoration:none;transition:color .25s;" data-es="Contacto" data-en="Contact">Contacto</a>
+      </div>
+      <div style="display:flex;align-items:center;padding:3px;border-radius:999px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.03);font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:500;">
+        <button id="btn-es" onclick="setLang('es')" style="border:none;cursor:pointer;padding:6px 13px;border-radius:999px;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:600;letter-spacing:.04em;transition:all .25s;background:#ff5c38;color:#09090b;">ES</button>
+        <button id="btn-en" onclick="setLang('en')" style="border:none;cursor:pointer;padding:6px 13px;border-radius:999px;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:500;letter-spacing:.04em;transition:all .25s;background:transparent;color:rgba(244,244,243,.5);">EN</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header style="position:relative;min-height:100vh;display:flex;align-items:center;padding:120px clamp(20px,5vw,64px) 90px;overflow:hidden;">
+    <canvas id="hero-canvas" style="position:absolute;inset:0;width:100%;height:100%;display:block;z-index:0;"></canvas>
+    <div style="position:absolute;top:8%;right:-6%;width:46vw;height:46vw;max-width:620px;max-height:620px;border-radius:50%;background:radial-gradient(circle,color-mix(in oklab,#ff5c38 26%,transparent) 0%,transparent 62%);filter:blur(30px);animation:floatGlow 14s ease-in-out infinite;z-index:0;pointer-events:none;"></div>
+    <div style="position:absolute;bottom:-10%;left:-8%;width:40vw;height:40vw;max-width:520px;max-height:520px;border-radius:50%;background:radial-gradient(circle,rgba(90,80,255,.16) 0%,transparent 60%);filter:blur(40px);animation:floatGlow2 18s ease-in-out infinite;z-index:0;pointer-events:none;"></div>
+
+    <div style="position:relative;z-index:2;width:100%;max-width:1120px;margin:0 auto;">
+      <div style="display:inline-flex;align-items:center;gap:9px;padding:7px 14px;border-radius:999px;border:1px solid color-mix(in oklab,#ff5c38 40%,transparent);background:color-mix(in oklab,#ff5c38 9%,transparent);font-family:'JetBrains Mono',monospace;font-size:12.5px;letter-spacing:.04em;color:color-mix(in oklab,#ff5c38 88%,white);animation:fadeUp .8s cubic-bezier(.16,1,.3,1) both;">
+        <span style="width:8px;height:8px;border-radius:50%;background:#ff5c38;box-shadow:0 0 0 4px color-mix(in oklab,#ff5c38 25%,transparent);display:inline-block;"></span>
+        <span data-es="Disponible para proyectos" data-en="Available for projects">Disponible para proyectos</span>
+      </div>
+      <p style="font-family:'JetBrains Mono',monospace;font-size:clamp(13px,1.5vw,15px);letter-spacing:.04em;color:rgba(244,244,243,.55);margin:26px 0 8px;animation:fadeUp .8s cubic-bezier(.16,1,.3,1) both;animation-delay:.08s;" data-es="// Ingeniero de Software · Desarrollador Fullstack" data-en="// Software Engineer · Fullstack Developer">// Ingeniero de Software · Desarrollador Fullstack</p>
+      <h1 style="font-size:clamp(52px,10vw,128px);line-height:.95;font-weight:600;letter-spacing:-.03em;margin:0;animation:fadeUp .9s cubic-bezier(.16,1,.3,1) both;animation-delay:.16s;">Gustavo<br><span style="color:#f4f4f3;">Lemos</span></h1>
+      <div style="font-size:clamp(22px,3.4vw,42px);font-weight:400;letter-spacing:-.01em;margin:24px 0 0;color:rgba(244,244,243,.92);animation:fadeUp .9s cubic-bezier(.16,1,.3,1) both;animation-delay:.26s;">
+        <span data-es="Construyo con" data-en="I build with">Construyo con</span>
+        <span id="rot-word" style="color:#ff5c38;display:inline-block;font-weight:600;white-space:nowrap;animation:wordIn .6s cubic-bezier(.16,1,.3,1) both;">React Native</span>
+      </div>
+      <p style="max-width:560px;font-size:clamp(15px,1.9vw,19px);color:rgba(244,244,243,.6);margin:22px 0 0;line-height:1.6;text-wrap:pretty;animation:fadeUp .9s cubic-bezier(.16,1,.3,1) both;animation-delay:.34s;" data-es="Más de 5 años creando aplicaciones web y móviles de alto rendimiento — del modelo de datos a la interfaz." data-en="5+ years crafting high-performance web &amp; mobile applications — from the data model all the way to the interface.">Más de 5 años creando aplicaciones web y móviles de alto rendimiento — del modelo de datos a la interfaz.</p>
+
+      <div style="display:flex;flex-wrap:wrap;gap:14px;margin-top:36px;animation:fadeUp .9s cubic-bezier(.16,1,.3,1) both;animation-delay:.42s;">
+        <a href="#contact" style="display:inline-flex;align-items:center;gap:9px;padding:15px 26px;border-radius:12px;background:#ff5c38;color:#09090b;font-weight:600;font-size:15.5px;text-decoration:none;transition:transform .25s cubic-bezier(.16,1,.3,1),box-shadow .25s;box-shadow:0 8px 30px color-mix(in oklab,#ff5c38 40%,transparent);" data-es="Contáctame" data-en="Get in touch">Contáctame <span style="font-family:'JetBrains Mono',monospace;">→</span></a>
+        <a href="#experience" class="sec-btn" style="display:inline-flex;align-items:center;gap:9px;padding:15px 26px;border-radius:12px;background:rgba(255,255,255,.04);color:#f4f4f3;font-weight:500;font-size:15.5px;text-decoration:none;border:1px solid rgba(255,255,255,.12);transition:background .25s,border-color .25s;" data-es="Ver experiencia" data-en="View experience">Ver experiencia</a>
+      </div>
+
+      <div style="display:flex;flex-wrap:wrap;gap:clamp(28px,5vw,64px);margin-top:54px;animation:fadeUp 1s cubic-bezier(.16,1,.3,1) both;animation-delay:.5s;">
+        <div>
+          <div style="font-size:clamp(34px,5vw,52px);font-weight:600;letter-spacing:-.02em;line-height:1;font-family:'Space Grotesk',sans-serif;">
+            <span data-count="5" data-done="">0</span><span style="color:#ff5c38;">+</span>
+          </div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:12.5px;letter-spacing:.03em;color:rgba(244,244,243,.5);margin-top:8px;" data-es="Años de experiencia" data-en="Years of experience">Años de experiencia</div>
+        </div>
+        <div>
+          <div style="font-size:clamp(34px,5vw,52px);font-weight:600;letter-spacing:-.02em;line-height:1;font-family:'Space Grotesk',sans-serif;">
+            <span data-count="4" data-done="">0</span>
+          </div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:12.5px;letter-spacing:.03em;color:rgba(244,244,243,.5);margin-top:8px;" data-es="Empresas" data-en="Companies">Empresas</div>
+        </div>
+        <div>
+          <div style="font-size:clamp(34px,5vw,52px);font-weight:600;letter-spacing:-.02em;line-height:1;font-family:'Space Grotesk',sans-serif;">
+            <span data-count="20" data-done="">0</span><span style="color:#ff5c38;">+</span>
+          </div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:12.5px;letter-spacing:.03em;color:rgba(244,244,243,.5);margin-top:8px;" data-es="Tecnologías" data-en="Technologies">Tecnologías</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="position:absolute;bottom:30px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;z-index:2;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.2em;color:rgba(244,244,243,.4);animation:bobDown 2s ease-in-out infinite;">
+      SCROLL
+      <span style="width:1px;height:30px;background:linear-gradient(to bottom,rgba(244,244,243,.5),transparent);"></span>
+    </div>
+  </header>
+
+  <!-- MARQUEE -->
+  <div style="overflow:hidden;border-top:1px solid rgba(255,255,255,.06);border-bottom:1px solid rgba(255,255,255,.06);padding:20px 0;background:rgba(255,255,255,.012);">
+    <div style="display:flex;width:max-content;align-items:center;animation:marquee 34s linear infinite;">
+      <!-- repeated twice for seamless loop -->
+      <span style="display:inline-flex;align-items:center;font-family:'JetBrains Mono',monospace;font-size:clamp(16px,2.4vw,26px);font-weight:500;color:rgba(244,244,243,.34);white-space:nowrap;">React<span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:#ff5c38;margin:0 clamp(20px,3vw,44px);opacity:.8;"></span></span>
+      <span style="display:inline-flex;align-items:center;font-family:'JetBrains Mono',monospace;font-size:clamp(16px,2.4vw,26px);font-weight:500;color:rgba(244,244,243,.34);white-space:nowrap;">React Native<span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:#ff5c38;margin:0 clamp(20px,3vw,44px);opacity:.8;"></span></span>
+      <span style="display:inline-flex;align-items:center;font-family:'JetBrains Mono',monospace;font-size:clamp(16px,2.4vw,26px);font-weight:500;color:rgba(244,244,243,.34);white-space:nowrap;">TypeScript<span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:#ff5c38;margin:0 clamp(20px,3vw,44px);opacity:.8;"></span></span>
+      <span style="display:inline-flex;align-items:center;font-family:'JetBrains Mono',monospace;font-size:clamp(16px,2.4vw,26px);font-weight:500;color:rgba(244,244,243,.34);white-space:nowrap;">Node.js<span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:#ff5c38;margin:0 clamp(20px,3vw,44px);opacity:.8;"></span></span>
+      <span style="display:inline-flex;align-items:center;font-family:'JetBrains Mono',monospace;font-size:clamp(16px,2.4vw,26px);font-weight:500;color:rgba(244,244,243,.34);white-space:nowrap;">PostgreSQL<span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:#ff5c38;margin:0 clamp(20px,3vw,44px);opacity:.8;"></span></span>
+      <span style="display:inline-flex;align-items:center;font-family:'JetBrains Mono',monospace;font-size:clamp(16px,2.4vw,26px);font-weight:500;color:rgba(244,244,243,.34);white-space:nowrap;">Next.js<span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:#ff5c38;margin:0 clamp(20px,3vw,44px);opacity:.8;"></span></span>
+      <span style="display:inline-flex;align-items:center;font-family:'JetBrains Mono',monospace;font-size:clamp(16px,2.4vw,26px);font-weight:500;color:rgba(244,244,243,.34);white-space:nowrap;">Expo<span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:#ff5c38;margin:0 clamp(20px,3vw,44px);opacity:.8;"></span></span>
+      <span style="display:inline-flex;align-items:center;font-family:'JetBrains Mono',monospace;font-size:clamp(16px,2.4vw,26px);font-weight:500;color:rgba(244,244,243,.34);white-space:nowrap;">Python<span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:#ff5c38;margin:0 clamp(20px,3vw,44px);opacity:.8;"></span></span>
+      <span style="display:inline-flex;align-items:center;font-family:'JetBrains Mono',monospace;font-size:clamp(16px,2.4vw,26px);font-weight:500;color:rgba(244,244,243,.34);white-space:nowrap;">Machine Learning<span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:#ff5c38;margin:0 clamp(20px,3vw,44px);opacity:.8;"></span></span>
+      <span style="display:inline-flex;align-items:center;font-family:'JetBrains Mono',monospace;font-size:clamp(16px,2.4vw,26px);font-weight:500;color:rgba(244,244,243,.34);white-space:nowrap;">AdonisJS<span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:#ff5c38;margin:0 clamp(20px,3vw,44px);opacity:.8;"></span></span>
+      <span style="display:inline-flex;align-items:center;font-family:'JetBrains Mono',monospace;font-size:clamp(16px,2.4vw,26px);font-weight:500;color:rgba(244,244,243,.34);white-space:nowrap;">Prisma<span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:#ff5c38;margin:0 clamp(20px,3vw,44px);opacity:.8;"></span></span>
+      <span style="display:inline-flex;align-items:center;font-family:'JetBrains Mono',monospace;font-size:clamp(16px,2.4vw,26px);font-weight:500;color:rgba(244,244,243,.34);white-space:nowrap;">Google Cloud<span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:#ff5c38;margin:0 clamp(20px,3vw,44px);opacity:.8;"></span></span>
+      <span style="display:inline-flex;align-items:center;font-family:'JetBrains Mono',monospace;font-size:clamp(16px,2.4vw,26px);font-weight:500;color:rgba(244,244,243,.34);white-space:nowrap;">Swift<span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:#ff5c38;margin:0 clamp(20px,3vw,44px);opacity:.8;"></span></span>
+      <span style="display:inline-flex;align-items:center;font-family:'JetBrains Mono',monospace;font-size:clamp(16px,2.4vw,26px);font-weight:500;color:rgba(244,244,243,.34);white-space:nowrap;">Kotlin<span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:#ff5c38;margin:0 clamp(20px,3vw,44px);opacity:.8;"></span></span>
+      <span style="display:inline-flex;align-items:center;font-family:'JetBrains Mono',monospace;font-size:clamp(16px,2.4vw,26px);font-weight:500;color:rgba(244,244,243,.34);white-space:nowrap;">Tailwind<span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:#ff5c38;margin:0 clamp(20px,3vw,44px);opacity:.8;"></span></span>
+      <!-- duplicate set -->
+      <span style="display:inline-flex;align-items:center;font-family:'JetBrains Mono',monospace;font-size:clamp(16px,2.4vw,26px);font-weight:500;color:rgba(244,244,243,.34);white-space:nowrap;">React<span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:#ff5c38;margin:0 clamp(20px,3vw,44px);opacity:.8;"></span></span>
+      <span style="display:inline-flex;align-items:center;font-family:'JetBrains Mono',monospace;font-size:clamp(16px,2.4vw,26px);font-weight:500;color:rgba(244,244,243,.34);white-space:nowrap;">React Native<span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:#ff5c38;margin:0 clamp(20px,3vw,44px);opacity:.8;"></span></span>
+      <span style="display:inline-flex;align-items:center;font-family:'JetBrains Mono',monospace;font-size:clamp(16px,2.4vw,26px);font-weight:500;color:rgba(244,244,243,.34);white-space:nowrap;">TypeScript<span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:#ff5c38;margin:0 clamp(20px,3vw,44px);opacity:.8;"></span></span>
+      <span style="display:inline-flex;align-items:center;font-family:'JetBrains Mono',monospace;font-size:clamp(16px,2.4vw,26px);font-weight:500;color:rgba(244,244,243,.34);white-space:nowrap;">Node.js<span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:#ff5c38;margin:0 clamp(20px,3vw,44px);opacity:.8;"></span></span>
+      <span style="display:inline-flex;align-items:center;font-family:'JetBrains Mono',monospace;font-size:clamp(16px,2.4vw,26px);font-weight:500;color:rgba(244,244,243,.34);white-space:nowrap;">PostgreSQL<span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:#ff5c38;margin:0 clamp(20px,3vw,44px);opacity:.8;"></span></span>
+      <span style="display:inline-flex;align-items:center;font-family:'JetBrains Mono',monospace;font-size:clamp(16px,2.4vw,26px);font-weight:500;color:rgba(244,244,243,.34);white-space:nowrap;">Next.js<span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:#ff5c38;margin:0 clamp(20px,3vw,44px);opacity:.8;"></span></span>
+      <span style="display:inline-flex;align-items:center;font-family:'JetBrains Mono',monospace;font-size:clamp(16px,2.4vw,26px);font-weight:500;color:rgba(244,244,243,.34);white-space:nowrap;">Expo<span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:#ff5c38;margin:0 clamp(20px,3vw,44px);opacity:.8;"></span></span>
+      <span style="display:inline-flex;align-items:center;font-family:'JetBrains Mono',monospace;font-size:clamp(16px,2.4vw,26px);font-weight:500;color:rgba(244,244,243,.34);white-space:nowrap;">Python<span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:#ff5c38;margin:0 clamp(20px,3vw,44px);opacity:.8;"></span></span>
+      <span style="display:inline-flex;align-items:center;font-family:'JetBrains Mono',monospace;font-size:clamp(16px,2.4vw,26px);font-weight:500;color:rgba(244,244,243,.34);white-space:nowrap;">Machine Learning<span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:#ff5c38;margin:0 clamp(20px,3vw,44px);opacity:.8;"></span></span>
+      <span style="display:inline-flex;align-items:center;font-family:'JetBrains Mono',monospace;font-size:clamp(16px,2.4vw,26px);font-weight:500;color:rgba(244,244,243,.34);white-space:nowrap;">AdonisJS<span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:#ff5c38;margin:0 clamp(20px,3vw,44px);opacity:.8;"></span></span>
+      <span style="display:inline-flex;align-items:center;font-family:'JetBrains Mono',monospace;font-size:clamp(16px,2.4vw,26px);font-weight:500;color:rgba(244,244,243,.34);white-space:nowrap;">Prisma<span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:#ff5c38;margin:0 clamp(20px,3vw,44px);opacity:.8;"></span></span>
+      <span style="display:inline-flex;align-items:center;font-family:'JetBrains Mono',monospace;font-size:clamp(16px,2.4vw,26px);font-weight:500;color:rgba(244,244,243,.34);white-space:nowrap;">Google Cloud<span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:#ff5c38;margin:0 clamp(20px,3vw,44px);opacity:.8;"></span></span>
+      <span style="display:inline-flex;align-items:center;font-family:'JetBrains Mono',monospace;font-size:clamp(16px,2.4vw,26px);font-weight:500;color:rgba(244,244,243,.34);white-space:nowrap;">Swift<span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:#ff5c38;margin:0 clamp(20px,3vw,44px);opacity:.8;"></span></span>
+      <span style="display:inline-flex;align-items:center;font-family:'JetBrains Mono',monospace;font-size:clamp(16px,2.4vw,26px);font-weight:500;color:rgba(244,244,243,.34);white-space:nowrap;">Kotlin<span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:#ff5c38;margin:0 clamp(20px,3vw,44px);opacity:.8;"></span></span>
+      <span style="display:inline-flex;align-items:center;font-family:'JetBrains Mono',monospace;font-size:clamp(16px,2.4vw,26px);font-weight:500;color:rgba(244,244,243,.34);white-space:nowrap;">Tailwind<span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:#ff5c38;margin:0 clamp(20px,3vw,44px);opacity:.8;"></span></span>
+    </div>
+  </div>
+
+  <!-- SKILLS -->
+  <section id="skills" style="position:relative;z-index:2;max-width:1120px;margin:0 auto;padding:clamp(80px,12vw,140px) clamp(20px,5vw,64px);scroll-margin-top:90px;">
+    <div data-reveal style="display:flex;align-items:baseline;gap:16px;margin-bottom:14px;">
+      <span style="font-family:'JetBrains Mono',monospace;font-size:14px;color:#ff5c38;">01</span>
+      <h2 style="font-size:clamp(34px,5.5vw,64px);font-weight:600;letter-spacing:-.025em;margin:0;" data-es="Stack técnico" data-en="Tech stack">Stack técnico</h2>
+    </div>
+    <p data-reveal style="color:rgba(244,244,243,.55);font-size:clamp(15px,1.9vw,19px);margin:0 0 48px;max-width:520px;" data-es="Las herramientas con las que construyo producto a diario." data-en="The tools I use to ship product every day.">Las herramientas con las que construyo producto a diario.</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:18px;">
+
+      <div data-reveal class="skill-card" style="position:relative;padding:26px;border-radius:18px;background:linear-gradient(160deg,rgba(255,255,255,.045),rgba(255,255,255,.012));border:1px solid rgba(255,255,255,.08);transition:transform .2s cubic-bezier(.16,1,.3,1),border-color .3s,box-shadow .3s;transform-style:preserve-3d;">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#ff5c38;margin-bottom:16px;" data-es="Lenguajes" data-en="Languages">Lenguajes</div>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;">
+          <span class="skill-chip" style="padding:7px 13px;border-radius:8px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.07);font-size:13.5px;color:rgba(244,244,243,.85);transition:background .25s,color .25s;cursor:default;">Java</span>
+          <span class="skill-chip" style="padding:7px 13px;border-radius:8px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.07);font-size:13.5px;color:rgba(244,244,243,.85);transition:background .25s,color .25s;cursor:default;">JavaScript</span>
+          <span class="skill-chip" style="padding:7px 13px;border-radius:8px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.07);font-size:13.5px;color:rgba(244,244,243,.85);transition:background .25s,color .25s;cursor:default;">TypeScript</span>
+          <span class="skill-chip" style="padding:7px 13px;border-radius:8px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.07);font-size:13.5px;color:rgba(244,244,243,.85);transition:background .25s,color .25s;cursor:default;">Python</span>
+          <span class="skill-chip" style="padding:7px 13px;border-radius:8px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.07);font-size:13.5px;color:rgba(244,244,243,.85);transition:background .25s,color .25s;cursor:default;">SQL</span>
+        </div>
+      </div>
+
+      <div data-reveal class="skill-card" style="position:relative;padding:26px;border-radius:18px;background:linear-gradient(160deg,rgba(255,255,255,.045),rgba(255,255,255,.012));border:1px solid rgba(255,255,255,.08);transition:transform .2s cubic-bezier(.16,1,.3,1),border-color .3s,box-shadow .3s;transform-style:preserve-3d;">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#ff5c38;margin-bottom:16px;">Frontend</div>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;">
+          <span class="skill-chip" style="padding:7px 13px;border-radius:8px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.07);font-size:13.5px;color:rgba(244,244,243,.85);transition:background .25s,color .25s;cursor:default;">React</span>
+          <span class="skill-chip" style="padding:7px 13px;border-radius:8px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.07);font-size:13.5px;color:rgba(244,244,243,.85);transition:background .25s,color .25s;cursor:default;">Next.js</span>
+          <span class="skill-chip" style="padding:7px 13px;border-radius:8px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.07);font-size:13.5px;color:rgba(244,244,243,.85);transition:background .25s,color .25s;cursor:default;">HTML</span>
+          <span class="skill-chip" style="padding:7px 13px;border-radius:8px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.07);font-size:13.5px;color:rgba(244,244,243,.85);transition:background .25s,color .25s;cursor:default;">CSS</span>
+          <span class="skill-chip" style="padding:7px 13px;border-radius:8px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.07);font-size:13.5px;color:rgba(244,244,243,.85);transition:background .25s,color .25s;cursor:default;">Tailwind CSS</span>
+        </div>
+      </div>
+
+      <div data-reveal class="skill-card" style="position:relative;padding:26px;border-radius:18px;background:linear-gradient(160deg,rgba(255,255,255,.045),rgba(255,255,255,.012));border:1px solid rgba(255,255,255,.08);transition:transform .2s cubic-bezier(.16,1,.3,1),border-color .3s,box-shadow .3s;transform-style:preserve-3d;">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#ff5c38;margin-bottom:16px;">Mobile</div>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;">
+          <span class="skill-chip" style="padding:7px 13px;border-radius:8px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.07);font-size:13.5px;color:rgba(244,244,243,.85);transition:background .25s,color .25s;cursor:default;">React Native</span>
+          <span class="skill-chip" style="padding:7px 13px;border-radius:8px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.07);font-size:13.5px;color:rgba(244,244,243,.85);transition:background .25s,color .25s;cursor:default;">Expo</span>
+          <span class="skill-chip" style="padding:7px 13px;border-radius:8px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.07);font-size:13.5px;color:rgba(244,244,243,.85);transition:background .25s,color .25s;cursor:default;">Swift</span>
+          <span class="skill-chip" style="padding:7px 13px;border-radius:8px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.07);font-size:13.5px;color:rgba(244,244,243,.85);transition:background .25s,color .25s;cursor:default;">Kotlin</span>
+        </div>
+      </div>
+
+      <div data-reveal class="skill-card" style="position:relative;padding:26px;border-radius:18px;background:linear-gradient(160deg,rgba(255,255,255,.045),rgba(255,255,255,.012));border:1px solid rgba(255,255,255,.08);transition:transform .2s cubic-bezier(.16,1,.3,1),border-color .3s,box-shadow .3s;transform-style:preserve-3d;">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#ff5c38;margin-bottom:16px;">Backend</div>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;">
+          <span class="skill-chip" style="padding:7px 13px;border-radius:8px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.07);font-size:13.5px;color:rgba(244,244,243,.85);transition:background .25s,color .25s;cursor:default;">Node.js</span>
+          <span class="skill-chip" style="padding:7px 13px;border-radius:8px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.07);font-size:13.5px;color:rgba(244,244,243,.85);transition:background .25s,color .25s;cursor:default;">AdonisJS</span>
+          <span class="skill-chip" style="padding:7px 13px;border-radius:8px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.07);font-size:13.5px;color:rgba(244,244,243,.85);transition:background .25s,color .25s;cursor:default;">Koa</span>
+          <span class="skill-chip" style="padding:7px 13px;border-radius:8px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.07);font-size:13.5px;color:rgba(244,244,243,.85);transition:background .25s,color .25s;cursor:default;">Prisma</span>
+          <span class="skill-chip" style="padding:7px 13px;border-radius:8px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.07);font-size:13.5px;color:rgba(244,244,243,.85);transition:background .25s,color .25s;cursor:default;">Strapi</span>
+        </div>
+      </div>
+
+      <div data-reveal class="skill-card" style="position:relative;padding:26px;border-radius:18px;background:linear-gradient(160deg,rgba(255,255,255,.045),rgba(255,255,255,.012));border:1px solid rgba(255,255,255,.08);transition:transform .2s cubic-bezier(.16,1,.3,1),border-color .3s,box-shadow .3s;transform-style:preserve-3d;">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#ff5c38;margin-bottom:16px;" data-es="Bases de Datos" data-en="Databases">Bases de Datos</div>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;">
+          <span class="skill-chip" style="padding:7px 13px;border-radius:8px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.07);font-size:13.5px;color:rgba(244,244,243,.85);transition:background .25s,color .25s;cursor:default;">PostgreSQL</span>
+          <span class="skill-chip" style="padding:7px 13px;border-radius:8px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.07);font-size:13.5px;color:rgba(244,244,243,.85);transition:background .25s,color .25s;cursor:default;">SQL Server</span>
+        </div>
+      </div>
+
+      <div data-reveal class="skill-card" style="position:relative;padding:26px;border-radius:18px;background:linear-gradient(160deg,rgba(255,255,255,.045),rgba(255,255,255,.012));border:1px solid rgba(255,255,255,.08);transition:transform .2s cubic-bezier(.16,1,.3,1),border-color .3s,box-shadow .3s;transform-style:preserve-3d;">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#ff5c38;margin-bottom:16px;" data-es="Datos &amp; ML" data-en="Data &amp; ML">Datos &amp; ML</div>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;">
+          <span class="skill-chip" style="padding:7px 13px;border-radius:8px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.07);font-size:13.5px;color:rgba(244,244,243,.85);transition:background .25s,color .25s;cursor:default;" data-es="Machine Learning" data-en="Machine Learning">Machine Learning</span>
+          <span class="skill-chip" style="padding:7px 13px;border-radius:8px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.07);font-size:13.5px;color:rgba(244,244,243,.85);transition:background .25s,color .25s;cursor:default;" data-es="Análisis de Datos" data-en="Data Analysis">Análisis de Datos</span>
+          <span class="skill-chip" style="padding:7px 13px;border-radius:8px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.07);font-size:13.5px;color:rgba(244,244,243,.85);transition:background .25s,color .25s;cursor:default;">Power BI</span>
+        </div>
+      </div>
+
+      <div data-reveal class="skill-card" style="position:relative;padding:26px;border-radius:18px;background:linear-gradient(160deg,rgba(255,255,255,.045),rgba(255,255,255,.012));border:1px solid rgba(255,255,255,.08);transition:transform .2s cubic-bezier(.16,1,.3,1),border-color .3s,box-shadow .3s;transform-style:preserve-3d;">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#ff5c38;margin-bottom:16px;">Cloud &amp; DevOps</div>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;">
+          <span class="skill-chip" style="padding:7px 13px;border-radius:8px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.07);font-size:13.5px;color:rgba(244,244,243,.85);transition:background .25s,color .25s;cursor:default;">Google Cloud</span>
+          <span class="skill-chip" style="padding:7px 13px;border-radius:8px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.07);font-size:13.5px;color:rgba(244,244,243,.85);transition:background .25s,color .25s;cursor:default;">Git</span>
+          <span class="skill-chip" style="padding:7px 13px;border-radius:8px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.07);font-size:13.5px;color:rgba(244,244,243,.85);transition:background .25s,color .25s;cursor:default;">CI/CD</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience" style="position:relative;z-index:2;max-width:1120px;margin:0 auto;padding:clamp(40px,8vw,90px) clamp(20px,5vw,64px);scroll-margin-top:90px;">
+    <div data-reveal style="display:flex;align-items:baseline;gap:16px;margin-bottom:14px;">
+      <span style="font-family:'JetBrains Mono',monospace;font-size:14px;color:#ff5c38;">02</span>
+      <h2 style="font-size:clamp(34px,5.5vw,64px);font-weight:600;letter-spacing:-.025em;margin:0;" data-es="Experiencia" data-en="Experience">Experiencia</h2>
+    </div>
+    <p data-reveal style="color:rgba(244,244,243,.55);font-size:clamp(15px,1.9vw,19px);margin:0 0 56px;max-width:520px;" data-es="Una trayectoria construyendo producto real." data-en="A track record of shipping real product.">Una trayectoria construyendo producto real.</p>
+
+    <div style="position:relative;padding-left:clamp(28px,5vw,52px);">
+      <div style="position:absolute;left:clamp(6px,1.2vw,10px);top:4px;bottom:4px;width:2px;background:rgba(255,255,255,.1);"></div>
+      <div id="timeline-fill" style="position:absolute;left:clamp(6px,1.2vw,10px);top:4px;width:2px;height:0%;background:#ff5c38;box-shadow:0 0 12px #ff5c38;transition:height .12s linear;"></div>
+
+      <!-- Job 1 -->
+      <div data-reveal style="position:relative;padding-bottom:clamp(40px,5vw,56px);">
+        <span style="position:absolute;left:calc(-1 * clamp(28px,5vw,52px) + clamp(2px,1vw,6px));top:6px;width:12px;height:12px;border-radius:50%;background:#09090b;border:2px solid #ff5c38;box-shadow:0 0 0 4px rgba(255,92,56,.12);"></span>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:12.5px;letter-spacing:.03em;color:#ff5c38;margin-bottom:8px;" data-es="Feb 2026 — Presente" data-en="Feb 2026 — Present">Feb 2026 — Presente</div>
+        <h3 style="font-size:clamp(20px,2.8vw,28px);font-weight:600;letter-spacing:-.01em;margin:0 0 4px;" data-es="Desarrollador Fullstack Mobile" data-en="Fullstack Mobile Developer">Desarrollador Fullstack Mobile</h3>
+        <div style="font-size:15px;color:rgba(244,244,243,.7);margin-bottom:16px;font-weight:500;">QOR DEV <span style="color:rgba(244,244,243,.4);">· Las Vegas, EE.UU.</span></div>
+        <ul style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:9px;">
+          <li style="position:relative;padding-left:22px;color:rgba(244,244,243,.62);font-size:15px;line-height:1.55;" data-es="Apps móviles multiplataforma iOS / Android con React Native y Expo." data-en="Cross-platform iOS / Android apps with React Native &amp; Expo."><span style="position:absolute;left:0;top:.55em;width:6px;height:6px;border-radius:2px;background:color-mix(in oklab,#ff5c38 70%,transparent);"></span>Apps móviles multiplataforma iOS / Android con React Native y Expo.</li>
+          <li style="position:relative;padding-left:22px;color:rgba(244,244,243,.62);font-size:15px;line-height:1.55;" data-es="APIs REST con Node.js y AdonisJS." data-en="REST APIs with Node.js &amp; AdonisJS."><span style="position:absolute;left:0;top:.55em;width:6px;height:6px;border-radius:2px;background:color-mix(in oklab,#ff5c38 70%,transparent);"></span>APIs REST con Node.js y AdonisJS.</li>
+          <li style="position:relative;padding-left:22px;color:rgba(244,244,243,.62);font-size:15px;line-height:1.55;" data-es="Diseño y optimización de bases de datos PostgreSQL." data-en="PostgreSQL database design &amp; optimization."><span style="position:absolute;left:0;top:.55em;width:6px;height:6px;border-radius:2px;background:color-mix(in oklab,#ff5c38 70%,transparent);"></span>Diseño y optimización de bases de datos PostgreSQL.</li>
+          <li style="position:relative;padding-left:22px;color:rgba(244,244,243,.62);font-size:15px;line-height:1.55;" data-es="Integración de servicios backend en entornos productivos." data-en="Backend service integration in production environments."><span style="position:absolute;left:0;top:.55em;width:6px;height:6px;border-radius:2px;background:color-mix(in oklab,#ff5c38 70%,transparent);"></span>Integración de servicios backend en entornos productivos.</li>
+        </ul>
+      </div>
+
+      <!-- Job 2 -->
+      <div data-reveal style="position:relative;padding-bottom:clamp(40px,5vw,56px);">
+        <span style="position:absolute;left:calc(-1 * clamp(28px,5vw,52px) + clamp(2px,1vw,6px));top:6px;width:12px;height:12px;border-radius:50%;background:#09090b;border:2px solid #ff5c38;box-shadow:0 0 0 4px rgba(255,92,56,.12);"></span>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:12.5px;letter-spacing:.03em;color:#ff5c38;margin-bottom:8px;" data-es="Dic 2024 — Dic 2025" data-en="Dec 2024 — Dec 2025">Dic 2024 — Dic 2025</div>
+        <h3 style="font-size:clamp(20px,2.8vw,28px);font-weight:600;letter-spacing:-.01em;margin:0 0 4px;" data-es="Desarrollador Fullstack Mobile" data-en="Fullstack Mobile Developer">Desarrollador Fullstack Mobile</h3>
+        <div style="font-size:15px;color:rgba(244,244,243,.7);margin-bottom:16px;font-weight:500;">Wayru <span style="color:rgba(244,244,243,.4);" data-es="· Guayaquil, Ecuador" data-en="· Guayaquil, Ecuador">· Guayaquil, Ecuador</span></div>
+        <ul style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:9px;">
+          <li style="position:relative;padding-left:22px;color:rgba(244,244,243,.62);font-size:15px;line-height:1.55;" data-es="Apps iOS / Android con React Native." data-en="iOS / Android apps with React Native."><span style="position:absolute;left:0;top:.55em;width:6px;height:6px;border-radius:2px;background:color-mix(in oklab,#ff5c38 70%,transparent);"></span>Apps iOS / Android con React Native.</li>
+          <li style="position:relative;padding-left:22px;color:rgba(244,244,243,.62);font-size:15px;line-height:1.55;" data-es="Módulos nativos en Swift y Kotlin." data-en="Native modules in Swift &amp; Kotlin."><span style="position:absolute;left:0;top:.55em;width:6px;height:6px;border-radius:2px;background:color-mix(in oklab,#ff5c38 70%,transparent);"></span>Módulos nativos en Swift y Kotlin.</li>
+          <li style="position:relative;padding-left:22px;color:rgba(244,244,243,.62);font-size:15px;line-height:1.55;" data-es="Backend con Prisma, Koa y Strapi." data-en="Backend with Prisma, Koa &amp; Strapi."><span style="position:absolute;left:0;top:.55em;width:6px;height:6px;border-radius:2px;background:color-mix(in oklab,#ff5c38 70%,transparent);"></span>Backend con Prisma, Koa y Strapi.</li>
+          <li style="position:relative;padding-left:22px;color:rgba(244,244,243,.62);font-size:15px;line-height:1.55;" data-es="Gestión y mantenimiento de bases de datos PostgreSQL." data-en="PostgreSQL database management &amp; maintenance."><span style="position:absolute;left:0;top:.55em;width:6px;height:6px;border-radius:2px;background:color-mix(in oklab,#ff5c38 70%,transparent);"></span>Gestión y mantenimiento de bases de datos PostgreSQL.</li>
+        </ul>
+      </div>
+
+      <!-- Job 3 -->
+      <div data-reveal style="position:relative;padding-bottom:clamp(40px,5vw,56px);">
+        <span style="position:absolute;left:calc(-1 * clamp(28px,5vw,52px) + clamp(2px,1vw,6px));top:6px;width:12px;height:12px;border-radius:50%;background:#09090b;border:2px solid #ff5c38;box-shadow:0 0 0 4px rgba(255,92,56,.12);"></span>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:12.5px;letter-spacing:.03em;color:#ff5c38;margin-bottom:8px;" data-es="Ene 2024 — Ene 2025" data-en="Jan 2024 — Jan 2025">Ene 2024 — Ene 2025</div>
+        <h3 style="font-size:clamp(20px,2.8vw,28px);font-weight:600;letter-spacing:-.01em;margin:0 0 4px;" data-es="Desarrollador Fullstack" data-en="Fullstack Developer">Desarrollador Fullstack</h3>
+        <div style="font-size:15px;color:rgba(244,244,243,.7);margin-bottom:16px;font-weight:500;">Navvi <span style="color:rgba(244,244,243,.4);" data-es="· Guayaquil, Ecuador" data-en="· Guayaquil, Ecuador">· Guayaquil, Ecuador</span></div>
+        <ul style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:9px;">
+          <li style="position:relative;padding-left:22px;color:rgba(244,244,243,.62);font-size:15px;line-height:1.55;" data-es="Apps móviles iOS / Android." data-en="Mobile iOS / Android apps."><span style="position:absolute;left:0;top:.55em;width:6px;height:6px;border-radius:2px;background:color-mix(in oklab,#ff5c38 70%,transparent);"></span>Apps móviles iOS / Android.</li>
+          <li style="position:relative;padding-left:22px;color:rgba(244,244,243,.62);font-size:15px;line-height:1.55;" data-es="APIs para consumo y procesamiento de datos." data-en="APIs for data consumption &amp; processing."><span style="position:absolute;left:0;top:.55em;width:6px;height:6px;border-radius:2px;background:color-mix(in oklab,#ff5c38 70%,transparent);"></span>APIs para consumo y procesamiento de datos.</li>
+          <li style="position:relative;padding-left:22px;color:rgba(244,244,243,.62);font-size:15px;line-height:1.55;" data-es="Aplicaciones web orientadas a e-commerce." data-en="Web applications for e-commerce."><span style="position:absolute;left:0;top:.55em;width:6px;height:6px;border-radius:2px;background:color-mix(in oklab,#ff5c38 70%,transparent);"></span>Aplicaciones web orientadas a e-commerce.</li>
+          <li style="position:relative;padding-left:22px;color:rgba(244,244,243,.62);font-size:15px;line-height:1.55;" data-es="Integración de servicios externos y optimización de UX." data-en="Third-party service integration &amp; UX optimization."><span style="position:absolute;left:0;top:.55em;width:6px;height:6px;border-radius:2px;background:color-mix(in oklab,#ff5c38 70%,transparent);"></span>Integración de servicios externos y optimización de UX.</li>
+        </ul>
+      </div>
+
+      <!-- Job 4 -->
+      <div data-reveal style="position:relative;padding-bottom:clamp(40px,5vw,56px);">
+        <span style="position:absolute;left:calc(-1 * clamp(28px,5vw,52px) + clamp(2px,1vw,6px));top:6px;width:12px;height:12px;border-radius:50%;background:#09090b;border:2px solid #ff5c38;box-shadow:0 0 0 4px rgba(255,92,56,.12);"></span>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:12.5px;letter-spacing:.03em;color:#ff5c38;margin-bottom:8px;" data-es="Dic 2020 — Dic 2023" data-en="Dec 2020 — Dec 2023">Dic 2020 — Dic 2023</div>
+        <h3 style="font-size:clamp(20px,2.8vw,28px);font-weight:600;letter-spacing:-.01em;margin:0 0 4px;" data-es="Desarrollador Fullstack" data-en="Fullstack Developer">Desarrollador Fullstack</h3>
+        <div style="font-size:15px;color:rgba(244,244,243,.7);margin-bottom:16px;font-weight:500;">Universidad Ecotec <span style="color:rgba(244,244,243,.4);" data-es="· Samborondón, Ecuador" data-en="· Samborondón, Ecuador">· Samborondón, Ecuador</span></div>
+        <ul style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:9px;">
+          <li style="position:relative;padding-left:22px;color:rgba(244,244,243,.62);font-size:15px;line-height:1.55;" data-es="Modelos de Machine Learning para análisis y predicción." data-en="Machine Learning models for analysis &amp; prediction."><span style="position:absolute;left:0;top:.55em;width:6px;height:6px;border-radius:2px;background:color-mix(in oklab,#ff5c38 70%,transparent);"></span>Modelos de Machine Learning para análisis y predicción.</li>
+          <li style="position:relative;padding-left:22px;color:rgba(244,244,243,.62);font-size:15px;line-height:1.55;" data-es="APIs con modelos de ML desplegadas en Google Cloud." data-en="APIs serving ML models deployed on Google Cloud."><span style="position:absolute;left:0;top:.55em;width:6px;height:6px;border-radius:2px;background:color-mix(in oklab,#ff5c38 70%,transparent);"></span>APIs con modelos de ML desplegadas en Google Cloud.</li>
+          <li style="position:relative;padding-left:22px;color:rgba(244,244,243,.62);font-size:15px;line-height:1.55;" data-es="Dashboards y KPIs para la toma de decisiones." data-en="Dashboards &amp; KPIs for decision-making."><span style="position:absolute;left:0;top:.55em;width:6px;height:6px;border-radius:2px;background:color-mix(in oklab,#ff5c38 70%,transparent);"></span>Dashboards y KPIs para la toma de decisiones.</li>
+          <li style="position:relative;padding-left:22px;color:rgba(244,244,243,.62);font-size:15px;line-height:1.55;" data-es="Proyectos de innovación y transformación digital." data-en="Innovation &amp; digital transformation projects."><span style="position:absolute;left:0;top:.55em;width:6px;height:6px;border-radius:2px;background:color-mix(in oklab,#ff5c38 70%,transparent);"></span>Proyectos de innovación y transformación digital.</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- EDUCATION + LANGUAGES -->
+  <section id="education" style="position:relative;z-index:2;max-width:1120px;margin:0 auto;padding:clamp(40px,8vw,90px) clamp(20px,5vw,64px);scroll-margin-top:90px;">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:clamp(40px,6vw,72px);">
+      <div>
+        <div data-reveal style="display:flex;align-items:baseline;gap:16px;margin-bottom:36px;">
+          <span style="font-family:'JetBrains Mono',monospace;font-size:14px;color:#ff5c38;">03</span>
+          <h2 style="font-size:clamp(30px,4.5vw,48px);font-weight:600;letter-spacing:-.025em;margin:0;" data-es="Educación" data-en="Education">Educación</h2>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:16px;">
+          <div data-reveal class="edu-card" style="padding:24px;border-radius:16px;background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.08);transition:border-color .3s,transform .3s;">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:14px;">
+              <h3 style="font-size:clamp(17px,2.2vw,21px);font-weight:600;margin:0 0 6px;letter-spacing:-.01em;" data-es="Maestría en Análisis de Datos" data-en="Master's in Data Analytics">Maestría en Análisis de Datos</h3>
+              <span style="font-family:'JetBrains Mono',monospace;font-size:13px;padding:4px 10px;border-radius:999px;background:color-mix(in oklab,#ff5c38 12%,transparent);color:#ff5c38;white-space:nowrap;">2025</span>
+            </div>
+            <div style="font-size:14.5px;color:rgba(244,244,243,.55);" data-es="Universidad Internacional de La Rioja (UNIR), España" data-en="Universidad Internacional de La Rioja (UNIR), Spain">Universidad Internacional de La Rioja (UNIR), España</div>
+          </div>
+          <div data-reveal class="edu-card" style="padding:24px;border-radius:16px;background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.08);transition:border-color .3s,transform .3s;">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:14px;">
+              <h3 style="font-size:clamp(17px,2.2vw,21px);font-weight:600;margin:0 0 6px;letter-spacing:-.01em;" data-es="Ingeniería de Software" data-en="Software Engineering">Ingeniería de Software</h3>
+              <span style="font-family:'JetBrains Mono',monospace;font-size:13px;padding:4px 10px;border-radius:999px;background:color-mix(in oklab,#ff5c38 12%,transparent);color:#ff5c38;white-space:nowrap;">2023</span>
+            </div>
+            <div style="font-size:14.5px;color:rgba(244,244,243,.55);" data-es="Universidad Ecotec, Ecuador" data-en="Universidad Ecotec, Ecuador">Universidad Ecotec, Ecuador</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div data-reveal style="display:flex;align-items:baseline;gap:16px;margin-bottom:36px;">
+          <span style="font-family:'JetBrains Mono',monospace;font-size:14px;color:#ff5c38;">04</span>
+          <h2 style="font-size:clamp(30px,4.5vw,48px);font-weight:600;letter-spacing:-.025em;margin:0;" data-es="Idiomas" data-en="Languages">Idiomas</h2>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:28px;">
+          <div data-reveal>
+            <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:11px;">
+              <span style="font-size:clamp(17px,2.2vw,21px);font-weight:600;" data-es="Español" data-en="Spanish">Español</span>
+              <span style="font-family:'JetBrains Mono',monospace;font-size:13px;color:rgba(244,244,243,.55);" data-es="Nativo" data-en="Native">Nativo</span>
+            </div>
+            <div style="height:8px;border-radius:999px;background:rgba(255,255,255,.07);overflow:hidden;">
+              <div data-bar="100" style="height:100%;width:0%;border-radius:999px;background:linear-gradient(90deg,#ff5c38,color-mix(in oklab,#ff5c38 60%,white));box-shadow:0 0 12px color-mix(in oklab,#ff5c38 50%,transparent);transition:width 1.4s cubic-bezier(.16,1,.3,1);"></div>
+            </div>
+          </div>
+          <div data-reveal>
+            <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:11px;">
+              <span style="font-size:clamp(17px,2.2vw,21px);font-weight:600;" data-es="Inglés" data-en="English">Inglés</span>
+              <span style="font-family:'JetBrains Mono',monospace;font-size:13px;color:rgba(244,244,243,.55);" data-es="B2 · Intermedio alto" data-en="B2 · Upper intermediate">B2 · Intermedio alto</span>
+            </div>
+            <div style="height:8px;border-radius:999px;background:rgba(255,255,255,.07);overflow:hidden;">
+              <div data-bar="75" style="height:100%;width:0%;border-radius:999px;background:linear-gradient(90deg,#ff5c38,color-mix(in oklab,#ff5c38 60%,white));box-shadow:0 0 12px color-mix(in oklab,#ff5c38 50%,transparent);transition:width 1.4s cubic-bezier(.16,1,.3,1);"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" style="position:relative;z-index:2;max-width:1120px;margin:0 auto;padding:clamp(60px,9vw,120px) clamp(20px,5vw,64px) clamp(40px,6vw,70px);scroll-margin-top:90px;">
+    <div data-reveal style="display:flex;align-items:baseline;gap:16px;margin-bottom:14px;">
+      <span style="font-family:'JetBrains Mono',monospace;font-size:14px;color:#ff5c38;">05</span>
+      <h2 style="font-size:clamp(38px,7vw,82px);font-weight:600;letter-spacing:-.03em;margin:0;line-height:1;" data-es="Trabajemos juntos" data-en="Let's work together">Trabajemos juntos</h2>
+    </div>
+    <p data-reveal style="color:rgba(244,244,243,.6);font-size:clamp(16px,2.2vw,22px);margin:0 0 44px;max-width:540px;" data-es="¿Tienes un proyecto en mente? Hablemos." data-en="Have a project in mind? Let's talk.">¿Tienes un proyecto en mente? Hablemos.</p>
+
+    <div data-reveal style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-bottom:56px;">
+      <a href="mailto:lemosgustavo113@gmail.com" class="contact-card" style="display:block;padding:24px;border-radius:16px;background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.08);text-decoration:none;color:#f4f4f3;transition:border-color .3s,transform .3s,background .3s;">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:rgba(244,244,243,.45);margin-bottom:12px;" data-es="Email" data-en="Email">Email</div>
+        <div style="font-size:15.5px;font-weight:500;word-break:break-all;">lemosgustavo113@gmail.com</div>
+      </a>
+      <a href="tel:+593988655346" class="contact-card" style="display:block;padding:24px;border-radius:16px;background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.08);text-decoration:none;color:#f4f4f3;transition:border-color .3s,transform .3s,background .3s;">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:rgba(244,244,243,.45);margin-bottom:12px;" data-es="Teléfono" data-en="Phone">Teléfono</div>
+        <div style="font-size:15.5px;font-weight:500;">+593 98 865 5346</div>
+      </a>
+      <div style="padding:24px;border-radius:16px;background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.08);">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:rgba(244,244,243,.45);margin-bottom:12px;" data-es="Ubicación" data-en="Location">Ubicación</div>
+        <div style="font-size:15.5px;font-weight:500;">Guayaquil, Ecuador</div>
+      </div>
+    </div>
+
+    <div data-reveal style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:rgba(244,244,243,.4);margin-bottom:18px;" data-es="Referencias" data-en="References">Referencias</div>
+    <div data-reveal style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;">
+      <div style="padding:18px 20px;border-radius:14px;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.015);">
+        <div style="font-weight:600;font-size:15px;margin-bottom:8px;">Ing. Alejandro Camacaro</div>
+        <div style="font-size:13px;color:rgba(244,244,243,.5);word-break:break-all;">alejandrocamacaro91@gmail.com</div>
+        <div style="font-size:13px;color:rgba(244,244,243,.5);margin-top:3px;">+58 412 054 6320</div>
+      </div>
+      <div style="padding:18px 20px;border-radius:14px;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.015);">
+        <div style="font-weight:600;font-size:15px;margin-bottom:8px;">Ing. Jorge Berrezueta</div>
+        <div style="font-size:13px;color:rgba(244,244,243,.5);word-break:break-all;">jorge@navvi.studio</div>
+        <div style="font-size:13px;color:rgba(244,244,243,.5);margin-top:3px;">+593 96 978 7672</div>
+      </div>
+      <div style="padding:18px 20px;border-radius:14px;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.015);">
+        <div style="font-weight:600;font-size:15px;margin-bottom:8px;">Ing. Daniel Velásquez</div>
+        <div style="font-size:13px;color:rgba(244,244,243,.5);word-break:break-all;">danvelc6@gmail.com</div>
+        <div style="font-size:13px;color:rgba(244,244,243,.5);margin-top:3px;">+593 99 372 4012</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer style="position:relative;z-index:2;border-top:1px solid rgba(255,255,255,.06);padding:30px clamp(20px,5vw,64px);display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:14px;">
+    <span style="font-family:'JetBrains Mono',monospace;font-size:12.5px;color:rgba(244,244,243,.4);">© 2026 Gustavo Lemos · <span data-es="Hecho con código y café" data-en="Built with code and coffee">Hecho con código y café</span></span>
+    <a href="#top" class="back-top" style="font-family:'JetBrains Mono',monospace;font-size:12.5px;color:rgba(244,244,243,.55);text-decoration:none;display:inline-flex;align-items:center;gap:7px;transition:color .25s;">↑ top</a>
+  </footer>
+
+</div>
+
+<script>
+(function(){
+  // Language
+  var lang = 'es';
+
+  var WORDS = ['React Native','Node.js','PostgreSQL','TypeScript','Machine Learning','Next.js'];
+  var wordIndex = 0;
+  var wordTimer;
+  var mounted = false;
+
+  function setLang(l) {
+    lang = l;
+    document.documentElement.lang = l;
+    // update all data-es/data-en elements
+    document.querySelectorAll('[data-es],[data-en]').forEach(function(el) {
+      var val = el.getAttribute('data-' + l);
+      if (val !== null) el.textContent = val;
+    });
+    // pill buttons
+    var pillActive = 'border:none;cursor:pointer;padding:6px 13px;border-radius:999px;font-family:\'JetBrains Mono\',monospace;font-size:12px;font-weight:600;letter-spacing:.04em;transition:all .25s;background:#ff5c38;color:#09090b;';
+    var pillBase   = 'border:none;cursor:pointer;padding:6px 13px;border-radius:999px;font-family:\'JetBrains Mono\',monospace;font-size:12px;font-weight:500;letter-spacing:.04em;transition:all .25s;background:transparent;color:rgba(244,244,243,.5);';
+    document.getElementById('btn-es').style.cssText = l === 'es' ? pillActive : pillBase;
+    document.getElementById('btn-en').style.cssText = l === 'en' ? pillActive : pillBase;
+  }
+
+  window.setLang = setLang;
+
+  // Rotating word
+  function rotateWord() {
+    wordIndex = (wordIndex + 1) % WORDS.length;
+    var el = document.getElementById('rot-word');
+    if (!el) return;
+    el.style.animation = 'none';
+    el.textContent = WORDS[wordIndex];
+    void el.offsetWidth;
+    el.style.animation = 'wordIn .6s cubic-bezier(.16,1,.3,1) both';
+  }
+
+  // Scroll progress + timeline
+  function onScroll() {
+    var doc = document.documentElement;
+    var sc = window.scrollY || doc.scrollTop;
+    var max = (doc.scrollHeight - window.innerHeight) || 1;
+    var pb = document.getElementById('scroll-progress');
+    if (pb) pb.style.width = Math.min(sc / max * 100, 100) + '%';
+    var sec = document.getElementById('experience');
+    var fill = document.getElementById('timeline-fill');
+    if (sec && fill) {
+      var r = sec.getBoundingClientRect();
+      var frac = (window.innerHeight * 0.55 - r.top) / r.height;
+      fill.style.height = Math.max(0, Math.min(frac, 1)) * 100 + '%';
+    }
+  }
+
+  // Count-up
+  function animateCount(el) {
+    if (!el || el.dataset.done === '1') return;
+    el.dataset.done = '1';
+    var target = parseInt(el.dataset.count || '0', 10);
+    var dur = 1400, start = performance.now();
+    function tick(now) {
+      var p = Math.min((now - start) / dur, 1);
+      var eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = Math.round(target * eased).toString();
+      if (p < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+
+  // Reveal on scroll
+  function initReveals() {
+    var els = document.querySelectorAll('[data-reveal]');
+    if (!('IntersectionObserver' in window)) {
+      els.forEach(function(e) {
+        e.classList.add('in');
+        e.querySelectorAll('[data-bar]').forEach(function(b){ b.style.width = (b.dataset.bar || 0) + '%'; });
+      });
+      return;
+    }
+    var io = new IntersectionObserver(function(entries) {
+      entries.forEach(function(en) {
+        if (en.isIntersecting) {
+          en.target.classList.add('in');
+          en.target.querySelectorAll('[data-count]').forEach(animateCount);
+          en.target.querySelectorAll('[data-bar]').forEach(function(b){ b.style.width = (b.dataset.bar || 0) + '%'; });
+          io.unobserve(en.target);
+        }
+      });
+    }, { threshold: 0.18, rootMargin: '0px 0px -8% 0px' });
+    els.forEach(function(el) { io.observe(el); });
+  }
+
+  // Particle canvas
+  function initParticles() {
+    var canvas = document.getElementById('hero-canvas');
+    if (!canvas) return;
+    var ctx = canvas.getContext('2d');
+    var W, H, DPR = Math.min(window.devicePixelRatio || 1, 2);
+    var mouse = { x: -9999, y: -9999 };
+    var parts = [];
+    var raf;
+
+    function resize() {
+      var r = canvas.getBoundingClientRect();
+      W = r.width; H = r.height;
+      canvas.width = W * DPR; canvas.height = H * DPR;
+      ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+      var target = Math.min(86, Math.floor(W * H / 13000));
+      parts = [];
+      for (var i = 0; i < target; i++) {
+        parts.push({ x: Math.random() * W, y: Math.random() * H, vx: (Math.random() - .5) * .32, vy: (Math.random() - .5) * .32, r: Math.random() * 1.8 + .6 });
+      }
+    }
+    window.addEventListener('resize', resize);
+    resize();
+
+    canvas.addEventListener('mousemove', function(e) {
+      var r = canvas.getBoundingClientRect();
+      mouse.x = e.clientX - r.left; mouse.y = e.clientY - r.top;
+    });
+    canvas.addEventListener('mouseleave', function() { mouse.x = -9999; mouse.y = -9999; });
+
+    function draw() {
+      if (!mounted) return;
+      ctx.clearRect(0, 0, W, H);
+      for (var i = 0; i < parts.length; i++) {
+        var p = parts[i];
+        p.x += p.vx; p.y += p.vy;
+        if (p.x < 0 || p.x > W) p.vx *= -1;
+        if (p.y < 0 || p.y > H) p.vy *= -1;
+        var dx = p.x - mouse.x, dy = p.y - mouse.y, d = Math.hypot(dx, dy);
+        if (d < 140 && d > 0) { var f = (140 - d) / 140 * 1.4; p.x += dx / d * f; p.y += dy / d * f; }
+      }
+      for (var i = 0; i < parts.length; i++) {
+        for (var j = i + 1; j < parts.length; j++) {
+          var a = parts[i], b = parts[j];
+          var dist = Math.hypot(a.x - b.x, a.y - b.y);
+          if (dist < 124) {
+            var al = (1 - dist / 124) * .5;
+            ctx.strokeStyle = 'rgba(255,92,56,' + al.toFixed(3) + ')';
+            ctx.lineWidth = .7;
+            ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
+          }
+        }
+      }
+      for (var i = 0; i < parts.length; i++) {
+        var p = parts[i];
+        var dm = Math.hypot(p.x - mouse.x, p.y - mouse.y);
+        ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = dm < 140 ? 'rgba(255,92,56,.9)' : 'rgba(244,244,243,.45)';
+        ctx.fill();
+      }
+      raf = requestAnimationFrame(draw);
+    }
+    draw();
+  }
+
+  // Cursor glow
+  function initCursor() {
+    if (window.matchMedia && window.matchMedia('(pointer:coarse)').matches) return;
+    var glow = document.getElementById('cursor-glow');
+    if (!glow) return;
+    var tx = 0, ty = 0, cx = 0, cy = 0, raf = null;
+    window.addEventListener('mousemove', function(e) {
+      tx = e.clientX; ty = e.clientY; glow.style.opacity = '1';
+      if (!raf) {
+        var run = function() {
+          cx += (tx - cx) * .16; cy += (ty - cy) * .16;
+          glow.style.transform = 'translate(' + cx + 'px,' + cy + 'px)';
+          if (Math.abs(tx - cx) > .5 || Math.abs(ty - cy) > .5) { raf = requestAnimationFrame(run); } else { raf = null; }
+        };
+        raf = requestAnimationFrame(run);
+      }
+    }, { passive: true });
+  }
+
+  // Tilt cards
+  function initTilt() {
+    if (window.matchMedia && window.matchMedia('(pointer:coarse)').matches) return;
+    document.querySelectorAll('.skill-card').forEach(function(card) {
+      card.addEventListener('mousemove', function(e) {
+        var r = card.getBoundingClientRect();
+        var px = (e.clientX - r.left) / r.width - .5;
+        var py = (e.clientY - r.top) / r.height - .5;
+        card.style.transform = 'perspective(800px) rotateY(' + (px * 7).toFixed(2) + 'deg) rotateX(' + (-py * 7).toFixed(2) + 'deg) translateZ(6px)';
+      });
+      card.addEventListener('mouseleave', function() { card.style.transform = ''; });
+    });
+  }
+
+  // Responsive nav links
+  function initNav() {
+    var mq = window.matchMedia('(min-width:760px)');
+    function applyMq() {
+      var el = document.getElementById('nav-links');
+      if (el) el.style.display = mq.matches ? 'flex' : 'none';
+    }
+    applyMq();
+    if (mq.addEventListener) mq.addEventListener('change', applyMq);
+    else mq.addListener(applyMq);
+  }
+
+  // Boot
+  document.addEventListener('DOMContentLoaded', function() {
+    mounted = true;
+    initParticles();
+    initReveals();
+    initCursor();
+    initTilt();
+    initNav();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+    // initial count-up for visible stats
+    setTimeout(function() {
+      document.querySelectorAll('[data-count]').forEach(animateCount);
+    }, 450);
+    wordTimer = setInterval(rotateWord, 2400);
+  });
+})();
+</script>
+</body>
+</html>
