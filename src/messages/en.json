@@ -1,0 +1,100 @@
+{
+  "nav": { "skills": "Skills", "exp": "Experience", "edu": "Education", "contact": "Contact" },
+  "avail": "Available for projects",
+  "kicker": "// Software Engineer · Fullstack Developer",
+  "heroBuild": "I build with",
+  "heroLead": "5+ years crafting high-performance web & mobile applications — from the data model all the way to the interface.",
+  "ctaPrimary": "Get in touch",
+  "ctaSecondary": "View experience",
+  "scroll": "SCROLL",
+  "stats": [
+    { "n": 5, "suf": "+", "l": "Years of experience" },
+    { "n": 4, "suf": "",  "l": "Companies" },
+    { "n": 20,"suf": "+", "l": "Technologies" }
+  ],
+  "skillsTitle": "Tech stack",
+  "skillsSub": "The tools I use to ship product every day.",
+  "skillGroups": [
+    { "label": "Languages",     "items": ["Java","JavaScript","TypeScript","Python","SQL"] },
+    { "label": "Frontend",      "items": ["React","Next.js","HTML","CSS","Tailwind CSS"] },
+    { "label": "Mobile",        "items": ["React Native","Expo","Swift","Kotlin"] },
+    { "label": "Backend",       "items": ["Node.js","AdonisJS","Koa","Prisma","Strapi"] },
+    { "label": "Databases",     "items": ["PostgreSQL","SQL Server"] },
+    { "label": "Data & ML",     "items": ["Machine Learning","Data Analysis","Power BI"] },
+    { "label": "Cloud & DevOps","items": ["Google Cloud","Git","CI/CD"] }
+  ],
+  "expTitle": "Experience",
+  "expSub": "A track record of shipping real product.",
+  "experience": [
+    {
+      "period": "Feb 2026 — Present",
+      "role": "Fullstack Mobile Developer",
+      "company": "QOR DEV",
+      "location": "Las Vegas, USA",
+      "points": [
+        "Cross-platform iOS / Android apps with React Native & Expo.",
+        "REST APIs with Node.js & AdonisJS.",
+        "PostgreSQL database design & optimization.",
+        "Backend service integration in production environments."
+      ]
+    },
+    {
+      "period": "Dec 2024 — Dec 2025",
+      "role": "Fullstack Mobile Developer",
+      "company": "Wayru",
+      "location": "Guayaquil, Ecuador",
+      "points": [
+        "iOS / Android apps with React Native.",
+        "Native modules in Swift & Kotlin.",
+        "Backend with Prisma, Koa & Strapi.",
+        "PostgreSQL database management & maintenance."
+      ]
+    },
+    {
+      "period": "Jan 2024 — Jan 2025",
+      "role": "Fullstack Developer",
+      "company": "Navvi",
+      "location": "Guayaquil, Ecuador",
+      "points": [
+        "Mobile iOS / Android apps.",
+        "APIs for data consumption & processing.",
+        "Web applications for e-commerce.",
+        "Third-party service integration & UX optimization."
+      ]
+    },
+    {
+      "period": "Dec 2020 — Dec 2023",
+      "role": "Fullstack Developer",
+      "company": "Universidad Ecotec",
+      "location": "Samborondón, Ecuador",
+      "points": [
+        "Machine Learning models for analysis & prediction.",
+        "APIs serving ML models deployed on Google Cloud.",
+        "Dashboards & KPIs for decision-making.",
+        "Innovation & digital transformation projects."
+      ]
+    }
+  ],
+  "eduTitle": "Education",
+  "langTitle": "Languages",
+  "education": [
+    { "degree": "Master's in Data Analytics", "school": "Universidad Internacional de La Rioja (UNIR), Spain", "year": "2025" },
+    { "degree": "Software Engineering",        "school": "Universidad Ecotec, Ecuador",                         "year": "2023" }
+  ],
+  "languages": [
+    { "name": "Spanish", "level": "Native",              "pct": 100 },
+    { "name": "English", "level": "B2 · Upper intermediate","pct": 75  }
+  ],
+  "contactTitle": "Let's work together",
+  "contactSub": "Have a project in mind? Let's talk.",
+  "email": "Email",
+  "phone": "Phone",
+  "loc": "Location",
+  "refTitle": "References",
+  "references": [
+    { "name": "Alejandro Camacaro", "email": "alejandrocamacaro91@gmail.com", "phone": "+58 412 054 6320" },
+    { "name": "Jorge Berrezueta",   "email": "jorge@navvi.studio",             "phone": "+593 96 978 7672" },
+    { "name": "Daniel Velásquez",   "email": "danvelc6@gmail.com",             "phone": "+593 99 372 4012" }
+  ],
+  "footer": "Built with code and coffee"
+}

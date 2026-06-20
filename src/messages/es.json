@@ -1,0 +1,100 @@
+{
+  "nav": { "skills": "Skills", "exp": "Experiencia", "edu": "Educación", "contact": "Contacto" },
+  "avail": "Disponible para proyectos",
+  "kicker": "// Ingeniero de Software · Desarrollador Fullstack",
+  "heroBuild": "Construyo con",
+  "heroLead": "Más de 5 años creando aplicaciones web y móviles de alto rendimiento — del modelo de datos a la interfaz.",
+  "ctaPrimary": "Contáctame",
+  "ctaSecondary": "Ver experiencia",
+  "scroll": "SCROLL",
+  "stats": [
+    { "n": 5, "suf": "+", "l": "Años de experiencia" },
+    { "n": 4, "suf": "",  "l": "Empresas" },
+    { "n": 20,"suf": "+", "l": "Tecnologías" }
+  ],
+  "skillsTitle": "Stack técnico",
+  "skillsSub": "Las herramientas con las que construyo producto a diario.",
+  "skillGroups": [
+    { "label": "Lenguajes",       "items": ["Java","JavaScript","TypeScript","Python","SQL"] },
+    { "label": "Frontend",        "items": ["React","Next.js","HTML","CSS","Tailwind CSS"] },
+    { "label": "Mobile",          "items": ["React Native","Expo","Swift","Kotlin"] },
+    { "label": "Backend",         "items": ["Node.js","AdonisJS","Koa","Prisma","Strapi"] },
+    { "label": "Bases de Datos",  "items": ["PostgreSQL","SQL Server"] },
+    { "label": "Datos & ML",      "items": ["Machine Learning","Análisis de Datos","Power BI"] },
+    { "label": "Cloud & DevOps",  "items": ["Google Cloud","Git","CI/CD"] }
+  ],
+  "expTitle": "Experiencia",
+  "expSub": "Una trayectoria construyendo producto real.",
+  "experience": [
+    {
+      "period": "Feb 2026 — Presente",
+      "role": "Desarrollador Fullstack Mobile",
+      "company": "QOR DEV",
+      "location": "Las Vegas, EE.UU.",
+      "points": [
+        "Apps móviles multiplataforma iOS / Android con React Native y Expo.",
+        "APIs REST con Node.js y AdonisJS.",
+        "Diseño y optimización de bases de datos PostgreSQL.",
+        "Integración de servicios backend en entornos productivos."
+      ]
+    },
+    {
+      "period": "Dic 2024 — Dic 2025",
+      "role": "Desarrollador Fullstack Mobile",
+      "company": "Wayru",
+      "location": "Guayaquil, Ecuador",
+      "points": [
+        "Apps iOS / Android con React Native.",
+        "Módulos nativos en Swift y Kotlin.",
+        "Backend con Prisma, Koa y Strapi.",
+        "Gestión y mantenimiento de bases de datos PostgreSQL."
+      ]
+    },
+    {
+      "period": "Ene 2024 — Ene 2025",
+      "role": "Desarrollador Fullstack",
+      "company": "Navvi",
+      "location": "Guayaquil, Ecuador",
+      "points": [
+        "Apps móviles iOS / Android.",
+        "APIs para consumo y procesamiento de datos.",
+        "Aplicaciones web orientadas a e-commerce.",
+        "Integración de servicios externos y optimización de UX."
+      ]
+    },
+    {
+      "period": "Dic 2020 — Dic 2023",
+      "role": "Desarrollador Fullstack",
+      "company": "Universidad Ecotec",
+      "location": "Samborondón, Ecuador",
+      "points": [
+        "Modelos de Machine Learning para análisis y predicción.",
+        "APIs con modelos de ML desplegadas en Google Cloud.",
+        "Dashboards y KPIs para la toma de decisiones.",
+        "Proyectos de innovación y transformación digital."
+      ]
+    }
+  ],
+  "eduTitle": "Educación",
+  "langTitle": "Idiomas",
+  "education": [
+    { "degree": "Maestría en Análisis de Datos",  "school": "Universidad Internacional de La Rioja (UNIR), España", "year": "2025" },
+    { "degree": "Ingeniería de Software",          "school": "Universidad Ecotec, Ecuador",                          "year": "2023" }
+  ],
+  "languages": [
+    { "name": "Español", "level": "Nativo",             "pct": 100 },
+    { "name": "Inglés",  "level": "B2 · Intermedio alto","pct": 75  }
+  ],
+  "contactTitle": "Trabajemos juntos",
+  "contactSub": "¿Tienes un proyecto en mente? Hablemos.",
+  "email": "Email",
+  "phone": "Teléfono",
+  "loc": "Ubicación",
+  "refTitle": "Referencias",
+  "references": [
+    { "name": "Ing. Alejandro Camacaro", "email": "alejandrocamacaro91@gmail.com", "phone": "+58 412 054 6320" },
+    { "name": "Ing. Jorge Berrezueta",   "email": "jorge@navvi.studio",             "phone": "+593 96 978 7672" },
+    { "name": "Ing. Daniel Velásquez",   "email": "danvelc6@gmail.com",             "phone": "+593 99 372 4012" }
+  ],
+  "footer": "Hecho con código y café"
+}
