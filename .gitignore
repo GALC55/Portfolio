@@ -44,3 +44,5 @@ next-env.d.ts
 .claude/
 .superpowers/
 docs/
+CLAUDE.md
+AGENTS.md
