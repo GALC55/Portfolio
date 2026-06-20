@@ -47,6 +47,12 @@ export function useReveal() {
     );
 
     els.forEach((el) => io.observe(el));
-    return () => io.disconnect();
+
+    // Animate count elements not inside a data-reveal (e.g. hero stats)
+    const t = setTimeout(() => {
+      document.querySelectorAll<HTMLElement>('[data-count]').forEach(animateCount);
+    }, 450);
+
+    return () => { io.disconnect(); clearTimeout(t); };
   }, []);
 }
