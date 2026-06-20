@@ -3,6 +3,8 @@ import { notFound } from 'next/navigation';
 import { NextIntlClientProvider } from 'next-intl';
 import { setRequestLocale } from 'next-intl/server';
 import { routing } from '@/i18n/routing';
+import ScrollProgress from '@/components/ScrollProgress';
+import CursorGlow from '@/components/CursorGlow';
 import '../globals.css';
 
 export async function generateStaticParams() {
@@ -55,6 +57,8 @@ export default async function LocaleLayout({
         />
       </head>
       <body className="bg-[#09090b] text-[#f4f4f3] font-sans antialiased overflow-x-hidden">
+        <ScrollProgress />
+        <CursorGlow />
         <NextIntlClientProvider messages={messages}>
           {children}
         </NextIntlClientProvider>
